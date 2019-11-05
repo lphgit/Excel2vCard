@@ -50,7 +50,7 @@ enddatarow = (int)(input("通信录数据结束行（始于0）: "))
 namecol = (int)(input("名字所在列（始于0）: "))
 cellcol = (int)(input("电话所在列（始于0）:"))
 
-f = open(output_file, 'w')
+f = open(output_file, 'w', encoding='utf-8')
 
 for i in range(startdatarow , enddatarow):
   ctype = table.cell(i, cellcol).ctype
@@ -60,9 +60,9 @@ for i in range(startdatarow , enddatarow):
        cell = str(cell)  # 转成整型后再转成字符串，如果想要整型就去掉该行
   f.write("BEGIN:VCARD\n");
   f.write("VERSION:3.0\n");
-  f.write("FN:CHARSET=gb2132:" + table.cell(i,namecol).value + "\n");
+  f.write("FN:" + table.cell(i,namecol).value + "\n");
   f.write("TEL;TYPE=CELL:" + cell + "\n");
-  f.write("ORG;CHARSET=gb2132:南京能云电力\n");
+  f.write("ORG;CHARSET=utf-8:南京能云电力\n");
   f.write("END:VCARD\n");
 f.close();
 
